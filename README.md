@@ -10,4 +10,9 @@ I have used recycler veiw to dynamically add new readings and show it in the vie
 You are welcome to edit my code. And help in making this app better.
 
 
+
+
+
+
+
 <img width="461" alt="image" src="https://user-images.githubusercontent.com/38160877/118514003-ce852b80-b751-11eb-90af-fb66bac085a8.png">
