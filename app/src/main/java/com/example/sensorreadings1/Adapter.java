@@ -31,7 +31,7 @@ public class Adapter extends RecyclerView.Adapter<Adapter.ViewHolder> {
 
     public Adapter(Context ctx, List<String> names, List<Integer> values){
           this.names=names;
-        Log.v("namesadap", String.valueOf(this.names));
+            Log.v("namesadap", String.valueOf(this.names));
           this.ctx=ctx;
           this.values=values;
           putImages();
