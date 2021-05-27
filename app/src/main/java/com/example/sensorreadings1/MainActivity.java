@@ -43,7 +43,7 @@ import okio.Timeout;
 public class MainActivity extends AppCompatActivity {
     int spanCount = 1;
     OkHttpClient client = new OkHttpClient.Builder()
-            .connectTimeout(100, TimeUnit.MILLISECONDS).build();
+            .connectTimeout(200, TimeUnit.MILLISECONDS).build();
     MaterialCardView mCardView;
     public static List<String> names = new ArrayList<>();
     public static List<Integer> values = new ArrayList<>();
@@ -129,31 +129,34 @@ public class MainActivity extends AppCompatActivity {
         } catch (JSONException e) {
             e.printStackTrace();
         }
-        if(!first)
+
         runOnUiThread(new Runnable() {
             @Override
             public void run() {
-                first=true;
+
                 adapter = new Adapter(MainActivity.this, names, values);
                 Log.v("object", String.valueOf(values));
                 if (names.size() <= 2) {
                     spanCount = 1;
                     LinearLayoutManager linearLayoutManager = new LinearLayoutManager(MainActivity.this, RecyclerView.VERTICAL, false);
                     dataList.setLayoutManager(linearLayoutManager);
-                    dataList.addItemDecoration(new RecyclerView.ItemDecoration() {
-                        @Override
-                        public void getItemOffsets(Rect outRect, View view, RecyclerView parent, RecyclerView.State state) {
-                            int sidePadding = 0;
-                            int totalWidth = 0;
-                            if (view instanceof MaterialCardView) {
-                                totalWidth = parent.getWidth();
-                                sidePadding = ((totalWidth) / 10);
-                                sidePadding = Math.max(0, sidePadding);
-                                outRect.set(sidePadding, 0, sidePadding, 0);
-                                Log.v("object", String.valueOf(sidePadding));
+                    if(!first) {
+                        first=true;
+                        dataList.addItemDecoration(new RecyclerView.ItemDecoration() {
+                            @Override
+                            public void getItemOffsets(Rect outRect, View view, RecyclerView parent, RecyclerView.State state) {
+                                int sidePadding = 0;
+                                int totalWidth = 0;
+                                if (view instanceof MaterialCardView) {
+                                    totalWidth = parent.getWidth();
+                                    sidePadding = ((totalWidth) / 10);
+                                    sidePadding = Math.max(0, sidePadding);
+                                    outRect.set(sidePadding, 0, sidePadding, 0);
+                                    Log.v("object", String.valueOf(sidePadding));
+                                }
                             }
-                        }
-                    });
+                        });
+                    }
                 } else {
                     spanCount = 2;
                     GridLayoutManager gridLayoutManager = new GridLayoutManager(MainActivity.this, spanCount, GridLayoutManager.VERTICAL, false);

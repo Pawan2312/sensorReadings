@@ -119,10 +119,10 @@ public class Adapter extends RecyclerView.Adapter<Adapter.ViewHolder> {
     }
 
     public int extractImages(int position, int values){
-        if(values>=0 && values<10){
+        if(values>=0 && values<=10){
             return images.get(0);
-        }else if(values>=10 && values<20){
-            return images.get(0);
+        }else if(values>10 && values<20){
+            return images.get(1);
         }else if(values>=20 && values<30){
             return images.get(1);
         }else if(values>=30 && values<40){
@@ -132,11 +132,11 @@ public class Adapter extends RecyclerView.Adapter<Adapter.ViewHolder> {
         }else if(values>=50 && values<60){
             return images.get(4);
         }else if(values>=60 && values<70){
-            return images.get(5);
+            return images.get(4);
         }else if(values>=70 && values<80){
-            return images.get(6);
+            return images.get(5);
         }else if(values>=80 && values<90){
-            return images.get(7);
+            return images.get(6);
         }else if(values>=90)
             return images.get(8);
         else return images.get(0);
