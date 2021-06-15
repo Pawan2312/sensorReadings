@@ -13,6 +13,7 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 import android.graphics.Rect;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.Log;
 import android.view.View;
 import android.widget.LinearLayout;
@@ -53,6 +54,7 @@ public class MainActivity extends AppCompatActivity {
     TextView textViewError;
     SwipeRefreshLayout swipeRefreshLayout;
     boolean first=false;
+    Handler handler =new Handler();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,7 +67,10 @@ public class MainActivity extends AppCompatActivity {
         textViewError.setVisibility(View.INVISIBLE);
         Objects.requireNonNull(getSupportActionBar()).setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
         getSupportActionBar().setCustomView(R.layout.abs_layout);
+
         fetchData();
+        m_Runnable.run();
+        //handler.postDelayed(runnable, 1000);
 
         swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
@@ -167,4 +172,23 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
+    public final Runnable runnable = new Runnable() {
+
+        @Override
+        public void run() {
+            fetchData();
+        }
+    };
+
+    private final Runnable m_Runnable = new Runnable()
+    {
+        public void run()
+
+        {
+            fetchData();
+
+            MainActivity.this.handler.postDelayed(m_Runnable,5000);
+        }
+
+    };
 }

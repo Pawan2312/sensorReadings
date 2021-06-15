@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">SensorReadings1</string>
     <string name="not_connected">Not Connected..!</string>
+    <string name="advanced_automation">Advanced Automation</string>
 </resources>
